@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NET Assessment Gateway - Choose Your Path</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0f0f1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+        header {
+            padding: 32px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+            backdrop-filter: blur(12px);
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: #ffffff;
+        }
+
+        /* GATEWAY GRID */
+        .gateway-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .gateway-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 2px solid;
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* PURPLE CARD (Tigers) */
+        .gateway-card.purple {
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3), inset 0 0 20px rgba(168, 85, 247, 0.1);
+        }
+
+        .gateway-card.purple:hover {
+            border-color: rgba(168, 85, 247, 0.8);
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.5), inset 0 0 30px rgba(168, 85, 247, 0.15);
+            transform: translateY(-6px);
+        }
+
+        /* GOLD CARD (Professional) */
+        .gateway-card.gold {
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.3), inset 0 0 20px rgba(245, 158, 11, 0.1);
+        }
+
+        .gateway-card.gold:hover {
+            border-color: rgba(245, 158, 11, 0.8);
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.5), inset 0 0 30px rgba(245, 158, 11, 0.15);
+            transform: translateY(-6px);
+        }
+
+        /* CARD CONTENT */
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-gate-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            opacity: 0.7;
+        }
+
+        .gateway-card.purple .card-gate-label {
+            color: #a855f7;
+        }
+
+        .gateway-card.gold .card-gate-label {
+            color: #f59e0b;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 28px;
+        }
+
+        .card-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .card-subtitle {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .gateway-card.purple .card-subtitle {
+            color: #f59e0b;
+        }
+
+        .gateway-card.gold .card-subtitle {
+            color: #f59e0b;
+        }
+
+        .card-description {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 12px;
+        }
+
+        .card-description-vi {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .card-age-level {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .gateway-card.purple .card-age-level {
+            color: #a855f7;
+        }
+
+        .gateway-card.gold .card-age-level {
+            color: #f59e0b;
+        }
+
+        .card-close-line {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 28px;
+            flex-grow: 1;
+        }
+
+        .cta-button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            align-self: flex-start;
+        }
+
+        .gateway-card.purple .cta-button {
+            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+        }
+
+        .gateway-card.purple .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(168, 85, 247, 0.6);
+        }
+
+        .gateway-card.gold .cta-button {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #0f0f1a;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .gateway-card.gold .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(245, 158, 11, 0.6);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .gateway-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .card-title {
+                font-size: 28px;
+            }
+
+            .card-subtitle {
+                font-size: 16px;
+            }
+
+            .card-image {
+                height: 220px;
+            }
+
+            .gateway-card {
+                padding: 28px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            header {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <img src="phoenix-logo.png" alt="NET Logo" class="logo-img">
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- HERO -->
+        <div class="hero">
+            <h1>Choose Your Path</h1>
+        </div>
+
+        <!-- GATEWAY GRID -->
+        <div class="gateway-grid">
+            <!-- LEFT GATE: NET TIGERS -->
+            <div class="gateway-card purple">
+                <div class="card-content">
+                    <div class="card-gate-label">LEFT GATE</div>
+                    <h2 class="card-title">NET Tigers'</h2>
+                    <h3 class="card-subtitle">Speak Clearly. Build Confidence. Secure Their Future.</h3>
+                    <p class="card-description">Nói năng rõ ràng. Xây dựng tự tin. Đảm bảo tương lai cho con.</p>
+                    
+                    <img src="tigers.png" alt="NET Tigers" class="card-image">
+                    
+                    <div class="card-age-level">Age 3-17</div>
+                    <p class="card-description">Stop the 'Grammar Prison.' Secure their future. Chấm dứt 'Nhà tù Ngữ pháp'. Đảm bảo tương lai cho con.</p>
+                    
+                    <button class="cta-button">[START ASSESSMENT - BẮT ĐẦU ĐÁNH GIÁ]</button>
+                </div>
+            </div>
+
+            <!-- RIGHT GATE: NET PROFESSIONAL -->
+            <div class="gateway-card gold">
+                <div class="card-content">
+                    <div class="card-gate-label">RIGHT GATE</div>
+                    <h2 class="card-title">NET Professional'</h2>
+                    <h3 class="card-subtitle">Master English + AI. Become Irreplaceable.</h3>
+                    <p class="card-description">Làm chủ Tiếng Anh + AI. Trở thành nhân sự không thể thay thế.</p>
+                    
+                    <img src="professional.png" alt="NET Professional" class="card-image">
+                    
+                    <div class="card-age-level">18+ University & Career</div>
+                    <p class="card-description">Kill the 'Freeze.' Become an irreplaceable asset. Xóa bỏ sự 'đứng hình'. Trở thành nhân sự không thể thay thế.</p>
+                    
+                    <button class="cta-button">[START ASSESSMENT - BẮT ĐẦU ĐÁNH GIÁ]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
